@@ -1,6 +1,6 @@
 {
   "name": "react-apollo-feature-flag",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "GraphQL Feature Flag implementation for React under Apollo Client",
   "author": "peaonunes",
   "homepage": "https://github.com/peaonunes/react-apollo-feature-flag",
