@@ -1,4 +1,6 @@
 import { ApolloProvider } from 'react-apollo'
+import ApolloClient from 'apollo-boost'
+
 import { render } from 'react-dom'
 import React from 'react'
 import 'babel-polyfill'
@@ -6,22 +8,32 @@ import 'babel-polyfill'
 import { EnabledFeatures, FlaggedFeature } from './../lib'
 
 import './styles.css'
-import client from './client'
+
+const client = new ApolloClient({
+  uri: 'http://localhost:3002/graphql',
+})
 
 const Demo = () => (
   <div>
     <h1>React + GraphQL + Apollo Client + Feature Flag</h1>
-    <EnabledFeatures loading="Loading..." error="Error!">
-      <p>Features:</p>
-      <FlaggedFeature name="feature1">
-        <p>feature 1 is enabled.</p>
-      </FlaggedFeature>
-      <FlaggedFeature name="feature2" notEnabled="feature 2 is not enabled.">
-        <p>feature 2 is enabled.</p>
-      </FlaggedFeature>
-      <FlaggedFeature name="feature3" notEnabled="feature 3 is not enabled.">
-        <p>feature 3 is enabled.</p>
-      </FlaggedFeature>
+    <EnabledFeatures>
+      {({ error, loading, ready }) => {
+        if (error) return 'Error!'
+        if (loading) return 'Loading...'
+
+        if (ready) return (
+          <React.Fragment>
+            Features
+            <FlaggedFeature name="feature1">
+              {({ enabled }) => {
+                if (enabled) return 'Feature 1 is enabled.'
+
+                return 'Feature 1 is not enabled.'
+              }}
+            </FlaggedFeature>
+          </React.Fragment>
+        )
+      }}
     </EnabledFeatures>
   </div>
 )
