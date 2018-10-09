@@ -8,10 +8,3 @@ export const queryEnabledFeatures = gql`
     }
   }
 `
-
-/* Ask whether a feature is enabled or not*/
-export const queryFeature = gql`
-  query($name: String!) {
-    isFeatureEnabled(name: $name) @client
-  }
-`
