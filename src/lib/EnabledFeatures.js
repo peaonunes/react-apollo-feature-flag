@@ -23,7 +23,7 @@ class EnabledFeatures extends React.Component {
 
           if (!data) return children({ ...renderProps })
 
-          return children({ ...renderProps, ready: !!data })
+          return children({ ...renderProps, ready: true })
         }}
       </Query>
     )

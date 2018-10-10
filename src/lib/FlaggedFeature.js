@@ -19,16 +19,14 @@ class FlaggedFeature extends React.Component {
           let renderProps = {
             loading,
             error,
-            enabled: false,
-            notEnabled: false
+            enabled: false
           }
 
           if (!data) return children({ ...renderProps })
 
-          const filteredFeatures = data.enabledFeatures.filter(
+          const hasFeature = data.enabledFeatures.some(
             feature => feature.name === name
           )
-          const hasFeature = filteredFeatures.length > 0
 
           return children({ ...renderProps, enabled: hasFeature })
         }}
