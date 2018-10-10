@@ -4,14 +4,13 @@ import React from 'react'
 
 import { queryEnabledFeatures } from './graphql/query'
 
-class FlaggedFeature extends React.Component {
+class EnabledFeatures extends React.Component {
   static propTypes = {
-    children: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired
+    children: PropTypes.func.isRequired
   }
 
   render() {
-    const { children, name } = this.props
+    const { children } = this.props
 
     return (
       <Query query={queryEnabledFeatures}>
@@ -19,20 +18,16 @@ class FlaggedFeature extends React.Component {
           let renderProps = {
             loading,
             error,
-            enabled: false
+            ready: false
           }
 
           if (!data) return children({ ...renderProps })
 
-          const hasFeature = data.enabledFeatures.some(
-            feature => feature.name === name
-          )
-
-          return children({ ...renderProps, enabled: hasFeature })
+          return children({ ...renderProps, ready: true })
         }}
       </Query>
     )
   }
 }
 
-export default FlaggedFeature
+export default EnabledFeatures
