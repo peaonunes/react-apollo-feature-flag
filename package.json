@@ -24,7 +24,7 @@
     "feature flag",
     "feature toggle"
   ],
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "prettier": {
     "singleQuote": true,
     "semi": false,
