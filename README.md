@@ -1,3 +1,5 @@
+# This package is no longer maintained.
+
 # react-apollo-feature-flag :rocket:
 
 [![npm package][npm-badge]][npm] [![npm](https://img.shields.io/npm/dt/react-apollo-feature-flag.svg)](http://npmjs.com/react-apollo-feature-flag)
